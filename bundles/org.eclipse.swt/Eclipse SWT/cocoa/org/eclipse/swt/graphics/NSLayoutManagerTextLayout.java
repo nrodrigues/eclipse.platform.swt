@@ -33,7 +33,7 @@ import org.eclipse.swt.internal.cocoa.*;
  *
  * @since 3.0
  */
-public final class TextLayout extends Resource {
+final class NSLayoutManagerTextLayout extends Resource implements ITextLayout {
 
 	NSTextStorage textStorage;
 	NSLayoutManager layoutManager;
@@ -89,7 +89,7 @@ public final class TextLayout extends Resource {
  *
  * @see #dispose()
  */
-public TextLayout (Device device) {
+public NSLayoutManagerTextLayout (Device device) {
 	super(device);
 	wrapWidth = ascent = descent = -1;
 	alignment = SWT.LEFT;
@@ -374,6 +374,7 @@ void destroy() {
  *    <li>ERROR_NULL_ARGUMENT - if the gc is null</li>
  * </ul>
  */
+@Override
 public void draw(GC gc, int x, int y) {
 	draw(gc, x, y, -1, -1, null, null);
 }
@@ -397,6 +398,7 @@ public void draw(GC gc, int x, int y) {
  *    <li>ERROR_NULL_ARGUMENT - if the gc is null</li>
  * </ul>
  */
+@Override
 public void draw(GC gc, int x, int y, int selectionStart, int selectionEnd, Color selectionForeground, Color selectionBackground) {
 	draw(gc, x, y, selectionStart, selectionEnd, selectionForeground, selectionBackground, 0);
 }
@@ -428,6 +430,7 @@ public void draw(GC gc, int x, int y, int selectionStart, int selectionEnd, Colo
  *
  * @since 3.3
  */
+@Override
 public void draw(GC gc, int x, int y, int selectionStart, int selectionEnd, Color selectionForeground, Color selectionBackground, int flags) {
 	checkLayout ();
 	if (gc == null) SWT.error(SWT.ERROR_NULL_ARGUMENT);
@@ -685,6 +688,7 @@ void freeRuns() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getAlignment() {
 	checkLayout();
 	return alignment;
@@ -704,6 +708,7 @@ public int getAlignment() {
  * @see #setAscent(int)
  * @see #getLineMetrics(int)
  */
+@Override
 public int getAscent () {
 	checkLayout();
 	return ascent;
@@ -723,6 +728,7 @@ public int getAscent () {
  * @see #setWidth(int)
  * @see #getLineBounds(int)
  */
+@Override
 public Rectangle getBounds() {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -757,6 +763,7 @@ public Rectangle getBounds() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public Rectangle getBounds(int start, int end) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -806,6 +813,7 @@ public Rectangle getBounds(int start, int end) {
  * @see #setDescent(int)
  * @see #getLineMetrics(int)
  */
+@Override
 public int getDescent () {
 	checkLayout();
 	return descent;
@@ -821,6 +829,7 @@ public int getDescent () {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public Font getFont () {
 	checkLayout();
 	return font;
@@ -837,6 +846,7 @@ public Font getFont () {
 *
 * @since 3.2
 */
+@Override
 public int getIndent () {
 	checkLayout();
 	return indent;
@@ -853,6 +863,7 @@ public int getIndent () {
 *
 * @since 3.2
 */
+@Override
 public boolean getJustify () {
 	checkLayout();
 	return justify;
@@ -872,6 +883,7 @@ public boolean getJustify () {
  * @exception SWTException <ul>
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  */
+@Override
 public int getLevel(int offset) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -904,6 +916,7 @@ public int getLevel(int offset) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int[] getLineOffsets() {
 	checkLayout ();
 	NSAutoreleasePool pool = null;
@@ -934,6 +947,7 @@ public int[] getLineOffsets() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getLineIndex(int offset) {
 	checkLayout ();
 	NSAutoreleasePool pool = null;
@@ -967,6 +981,7 @@ public int getLineIndex(int offset) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public Rectangle getLineBounds(int lineIndex) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -992,6 +1007,7 @@ public Rectangle getLineBounds(int lineIndex) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getLineCount() {
 	checkLayout ();
 	NSAutoreleasePool pool = null;
@@ -1017,6 +1033,7 @@ public int getLineCount() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public FontMetrics getLineMetrics (int lineIndex) {
 	checkLayout ();
 	NSAutoreleasePool pool = null;
@@ -1058,6 +1075,7 @@ public FontMetrics getLineMetrics (int lineIndex) {
  * @see #getOffset(Point, int[])
  * @see #getOffset(int, int, int[])
  */
+@Override
 public Point getLocation(int offset, boolean trailing) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -1120,6 +1138,7 @@ public Point getLocation(int offset, boolean trailing) {
  *
  * @see #getPreviousOffset(int, int)
  */
+@Override
 public int getNextOffset (int offset, int movement) {
 	NSAutoreleasePool pool = null;
 	if (!NSThread.isMainThread()) pool = (NSAutoreleasePool) new NSAutoreleasePool().alloc().init();
@@ -1222,6 +1241,7 @@ int _getOffset (int offset, int movement, boolean forward) {
  *
  * @see #getLocation(int, boolean)
  */
+@Override
 public int getOffset(Point point, int[] trailing) {
 	checkLayout();
 	if (point == null) SWT.error(SWT.ERROR_NULL_ARGUMENT);
@@ -1251,6 +1271,7 @@ public int getOffset(Point point, int[] trailing) {
  *
  * @see #getLocation(int, boolean)
  */
+@Override
 public int getOffset(int x, int y, int[] trailing) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -1298,6 +1319,7 @@ public int getOffset(int x, int y, int[] trailing) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getOrientation() {
 	checkLayout();
 	return orientation;
@@ -1322,6 +1344,7 @@ public int getOrientation() {
  *
  * @see #getNextOffset(int, int)
  */
+@Override
 public int getPreviousOffset (int offset, int movement) {
 	NSAutoreleasePool pool = null;
 	if (!NSThread.isMainThread()) pool = (NSAutoreleasePool) new NSAutoreleasePool().alloc().init();
@@ -1346,6 +1369,7 @@ public int getPreviousOffset (int offset, int movement) {
  *
  * @since 3.2
  */
+@Override
 public int[] getRanges () {
 	checkLayout();
 	int[] result = new int[stylesCount * 2];
@@ -1373,6 +1397,7 @@ public int[] getRanges () {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int[] getSegments() {
 	checkLayout();
 	return segments;
@@ -1389,6 +1414,7 @@ public int[] getSegments() {
  *
  * @since 3.6
  */
+@Override
 public char[] getSegmentsChars () {
 	checkLayout();
 	return segmentsChars;
@@ -1436,6 +1462,7 @@ String getSegmentsText() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getSpacing () {
 	checkLayout();
 	return spacing;
@@ -1454,6 +1481,7 @@ public int getSpacing () {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public TextStyle getStyle (int offset) {
 	checkLayout();
 	int length = text.length();
@@ -1480,6 +1508,7 @@ public TextStyle getStyle (int offset) {
  *
  * @since 3.2
  */
+@Override
 public TextStyle[] getStyles () {
 	checkLayout();
 	TextStyle[] result = new TextStyle[stylesCount];
@@ -1506,6 +1535,7 @@ public TextStyle[] getStyles () {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int[] getTabs() {
 	checkLayout();
 	return tabs;
@@ -1521,6 +1551,7 @@ public int[] getTabs() {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public String getText () {
 	checkLayout ();
 	return text;
@@ -1536,6 +1567,7 @@ public String getText () {
  * </ul>
  * @since 3.103
  */
+@Override
 public int getTextDirection () {
 	checkLayout();
 	return orientation;
@@ -1550,6 +1582,7 @@ public int getTextDirection () {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public int getWidth () {
 	checkLayout();
 	return wrapWidth;
@@ -1566,6 +1599,7 @@ public int getWidth () {
 *
 * @since 3.6
 */
+@Override
 public int getWrapIndent () {
 	checkLayout();
 	return wrapIndent;
@@ -1636,6 +1670,7 @@ boolean isUnderlineSupported (TextStyle style) {
  *
  * @see #setWidth(int)
  */
+@Override
 public void setAlignment (int alignment) {
 	checkLayout();
 	int mask = SWT.LEFT | SWT.CENTER | SWT.RIGHT;
@@ -1672,6 +1707,7 @@ public void setAlignment (int alignment) {
  * @see #setDescent(int)
  * @see #getLineMetrics(int)
  */
+@Override
 public void setAscent (int ascent) {
 	checkLayout ();
 	if (ascent < -1) SWT.error(SWT.ERROR_INVALID_ARGUMENT);
@@ -1704,6 +1740,7 @@ public void setAscent (int ascent) {
  * @see #setAscent(int)
  * @see #getLineMetrics(int)
  */
+@Override
 public void setDescent (int descent) {
 	checkLayout ();
 	if (descent < -1) SWT.error(SWT.ERROR_INVALID_ARGUMENT);
@@ -1734,6 +1771,7 @@ public void setDescent (int descent) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setFont (Font font) {
 	checkLayout ();
 	if (font != null && font.isDisposed()) SWT.error(SWT.ERROR_INVALID_ARGUMENT);
@@ -1764,6 +1802,7 @@ public void setFont (Font font) {
  *
  * @since 3.2
  */
+@Override
 public void setIndent (int indent) {
 	checkLayout ();
 	if (indent < 0) return;
@@ -1792,6 +1831,7 @@ public void setIndent (int indent) {
  *
  * @since 3.6
  */
+@Override
 public void setWrapIndent (int wrapIndent) {
 	checkLayout ();
 	if (wrapIndent < 0) return;
@@ -1818,6 +1858,7 @@ public void setWrapIndent (int wrapIndent) {
  *
  * @since 3.2
  */
+@Override
 public void setJustify (boolean justify) {
 	checkLayout ();
 	if (justify == this.justify) return;
@@ -1841,6 +1882,7 @@ public void setJustify (boolean justify) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setOrientation(int orientation) {
 	checkLayout();
 	int mask = SWT.LEFT_TO_RIGHT | SWT.RIGHT_TO_LEFT;
@@ -1882,6 +1924,7 @@ public void setOrientation(int orientation) {
  *
  * @see #setSegmentsChars(char[])
  */
+@Override
 public void setSegments(int[] segments) {
 	checkLayout();
 	if (this.segments == null && segments == null) return;
@@ -1921,6 +1964,7 @@ public void setSegments(int[] segments) {
  *
  * @since 3.6
  */
+@Override
 public void setSegmentsChars(char[] segmentsChars) {
 	checkLayout();
 	if (this.segmentsChars == null && segmentsChars == null) return;
@@ -1956,6 +2000,7 @@ public void setSegmentsChars(char[] segmentsChars) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setSpacing (int spacing) {
 	checkLayout();
 	if (spacing < 0) SWT.error(SWT.ERROR_INVALID_ARGUMENT);
@@ -1983,6 +2028,7 @@ public void setSpacing (int spacing) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setStyle (TextStyle style, int start, int end) {
 	checkLayout();
 	NSAutoreleasePool pool = null;
@@ -2080,6 +2126,7 @@ public void setStyle (TextStyle style, int start, int end) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setTabs(int[] tabs) {
 	checkLayout();
 	if (this.tabs == null && tabs == null) return;
@@ -2119,6 +2166,7 @@ public void setTabs(int[] tabs) {
  *    <li>ERROR_GRAPHIC_DISPOSED - if the receiver has been disposed</li>
  * </ul>
  */
+@Override
 public void setText (String text) {
 	checkLayout ();
 	if (text == null) SWT.error(SWT.ERROR_NULL_ARGUMENT);
@@ -2155,6 +2203,7 @@ public void setText (String text) {
  * </ul>
  * @since 3.103
  */
+@Override
 public void setTextDirection (int textDirection) {
 	checkLayout();
 }
@@ -2175,6 +2224,7 @@ public void setTextDirection (int textDirection) {
  *
  * @see #setAlignment(int)
  */
+@Override
 public void setWidth (int width) {
 	checkLayout();
 	if (width < -1 || width == 0) SWT.error(SWT.ERROR_INVALID_ARGUMENT);
