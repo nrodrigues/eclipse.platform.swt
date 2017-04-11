@@ -2,8 +2,33 @@
 <signatures swt_gen="mixed">
 	<constant name="kCTFontAttributeName" swt_gen="true"></constant>
 	<constant name="kCTForegroundColorAttributeName" swt_gen="true"></constant>
+	<constant name="kCTForegroundColorFromContextAttributeName" swt_gen="true"></constant>
 	<constant name="kCTParagraphStyleAttributeName" swt_gen="true"></constant>
+	<enum name="kCTLineBoundsExcludeTypographicLeading" swt_gen="true"></enum>
+	<enum name="kCTLineBoundsExcludeTypographicShifts" swt_gen="true"></enum>
+	<enum name="kCTLineBoundsIncludeLanguageExtents" swt_gen="true"></enum>
+	<enum name="kCTLineBoundsUseGlyphPathBounds" swt_gen="true"></enum>
+	<enum name="kCTLineBoundsUseHangingPunctuation" swt_gen="true"></enum>
+	<enum name="kCTLineBoundsUseOpticalBounds" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierAlignment" swt_gen="true"></enum>
 	<enum name="kCTParagraphStyleSpecifierBaseWritingDirection" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierCount" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierDefaultTabInterval" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierFirstLineHeadIndent" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierHeadIndent" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierLineBoundsOptions" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierLineBreakMode" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierLineHeightMultiple" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierLineSpacing" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierLineSpacingAdjustment" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierMaximumLineHeight" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierMaximumLineSpacing" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierMinimumLineHeight" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierMinimumLineSpacing" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierParagraphSpacing" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierParagraphSpacingBefore" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierTabStops" swt_gen="true"></enum>
+	<enum name="kCTParagraphStyleSpecifierTailIndent" swt_gen="true"></enum>
 	<enum name="kCTWritingDirectionLeftToRight" swt_gen="true"></enum>
 	<enum name="kCTWritingDirectionNatural" swt_gen="true"></enum>
 	<enum name="kCTWritingDirectionRightToLeft" swt_gen="true"></enum>
@@ -19,6 +44,50 @@
 		<arg swt_gen="true"></arg>
 		<retval swt_gen="true"></retval>
 	</function>
+	<function name="CTFrameDraw" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFrameGetFrameAttributes" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFrameGetLineOrigins" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFrameGetLines" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFrameGetPath" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFrameGetTypeID" swt_gen="true">
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFramesetterCreateFrame" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFramesetterCreateWithAttributedString" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFramesetterGetTypeID" swt_gen="true">
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTFramesetterGetTypesetter" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
 	<function name="CTLineCreateWithAttributedString" swt_gen="true">
 		<arg swt_gen="true"></arg>
 		<retval swt_gen="true"></retval>
@@ -27,6 +96,21 @@
 		<arg swt_gen="true"></arg>
 		<arg swt_gen="true"></arg>
 		<retval></retval>
+	</function>
+	<function name="CTLineGetGlyphRuns" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTLineGetOffsetForStringIndex" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTLineGetStringIndexForPosition" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
 	</function>
 	<function name="CTLineGetTypographicBounds" swt_gen="true">
 		<arg swt_gen="true"></arg>
@@ -38,6 +122,24 @@
 	<function name="CTParagraphStyleCreate" swt_gen="true">
 		<arg swt_gen="true"></arg>
 		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTRunDraw" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTRunGetAttributes" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<retval swt_gen="true"></retval>
+	</function>
+	<function name="CTRunGetTypographicBounds" swt_gen="true">
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true"></arg>
+		<arg swt_gen="true" swt_java_type="float[]" swt_java_type64="double[]"></arg>
+		<arg swt_gen="true" swt_java_type="float[]" swt_java_type64="double[]"></arg>
+		<arg swt_gen="true" swt_java_type="float[]" swt_java_type64="double[]"></arg>
 		<retval swt_gen="true"></retval>
 	</function>
 	<function name="CTTypesetterCreateLine" swt_gen="true">

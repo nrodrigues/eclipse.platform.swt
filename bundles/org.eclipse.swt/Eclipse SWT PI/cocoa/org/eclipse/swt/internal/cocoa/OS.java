@@ -1850,6 +1850,7 @@ public static final long /*int*/ sel_setAttachmentCell_ = sel_registerName("setA
 public static final long /*int*/ sel_setAttributedString_ = sel_registerName("setAttributedString:");
 public static final long /*int*/ sel_setAttributedStringValue_ = sel_registerName("setAttributedStringValue:");
 public static final long /*int*/ sel_setAttributedTitle_ = sel_registerName("setAttributedTitle:");
+public static final long /*int*/ sel_setAttributes_range_ = sel_registerName("setAttributes:range:");
 public static final long /*int*/ sel_setAutoenablesItems_ = sel_registerName("setAutoenablesItems:");
 public static final long /*int*/ sel_setAutohidesScrollers_ = sel_registerName("setAutohidesScrollers:");
 public static final long /*int*/ sel_setAutoresizesOutlineColumn_ = sel_registerName("setAutoresizesOutlineColumn:");
@@ -2537,6 +2538,11 @@ public static final int NSTouchPhaseEnded = 8;
 public static final int NSTouchPhaseMoved = 2;
 public static final int NSTouchPhaseStationary = 4;
 public static final int NSTouchPhaseTouching = 7;
+public static final int NSUnderlinePatternDash = 512;
+public static final int NSUnderlinePatternDashDot = 768;
+public static final int NSUnderlinePatternDashDotDot = 1024;
+public static final int NSUnderlinePatternDot = 256;
+public static final int NSUnderlinePatternSolid = 0;
 public static final int NSUnderlineStyleDouble = 9;
 public static final int NSUnderlineStyleNone = 0;
 public static final int NSUnderlineStyleSingle = 1;
@@ -2559,6 +2565,7 @@ public static final int NSWritingDirectionNatural = -1;
 public static final int NSWritingDirectionRightToLeft = 1;
 public static final int NSYearMonthDatePickerElementFlag = 192;
 public static final int NSYearMonthDayDatePickerElementFlag = 224;
+public static final int kCFNotFound = -1;
 public static final int kCFRunLoopBeforeWaiting = 32;
 public static final int kCFStringEncodingUTF8 = 134217984;
 public static final int kCGBlendModeDifference = 10;
@@ -2600,7 +2607,31 @@ public static final int kCGPathStroke = 2;
 public static final int kCGScrollEventUnitLine = 1;
 public static final int kCGScrollEventUnitPixel = 0;
 public static final int kCGTextFillStroke = 2;
+public static final int kCTLineBoundsExcludeTypographicLeading = 1;
+public static final int kCTLineBoundsExcludeTypographicShifts = 2;
+public static final int kCTLineBoundsIncludeLanguageExtents = 32;
+public static final int kCTLineBoundsUseGlyphPathBounds = 8;
+public static final int kCTLineBoundsUseHangingPunctuation = 4;
+public static final int kCTLineBoundsUseOpticalBounds = 16;
+public static final int kCTParagraphStyleSpecifierAlignment = 0;
 public static final int kCTParagraphStyleSpecifierBaseWritingDirection = 13;
+public static final int kCTParagraphStyleSpecifierCount = 18;
+public static final int kCTParagraphStyleSpecifierDefaultTabInterval = 5;
+public static final int kCTParagraphStyleSpecifierFirstLineHeadIndent = 1;
+public static final int kCTParagraphStyleSpecifierHeadIndent = 2;
+public static final int kCTParagraphStyleSpecifierLineBoundsOptions = 17;
+public static final int kCTParagraphStyleSpecifierLineBreakMode = 6;
+public static final int kCTParagraphStyleSpecifierLineHeightMultiple = 7;
+public static final int kCTParagraphStyleSpecifierLineSpacing = 10;
+public static final int kCTParagraphStyleSpecifierLineSpacingAdjustment = 16;
+public static final int kCTParagraphStyleSpecifierMaximumLineHeight = 8;
+public static final int kCTParagraphStyleSpecifierMaximumLineSpacing = 14;
+public static final int kCTParagraphStyleSpecifierMinimumLineHeight = 9;
+public static final int kCTParagraphStyleSpecifierMinimumLineSpacing = 15;
+public static final int kCTParagraphStyleSpecifierParagraphSpacing = 11;
+public static final int kCTParagraphStyleSpecifierParagraphSpacingBefore = 12;
+public static final int kCTParagraphStyleSpecifierTabStops = 4;
+public static final int kCTParagraphStyleSpecifierTailIndent = 3;
 public static final int kCTWritingDirectionLeftToRight = 0;
 public static final int kCTWritingDirectionNatural = -1;
 public static final int kCTWritingDirectionRightToLeft = 1;
@@ -3196,11 +3227,17 @@ public static final NSString NSWindowWillCloseNotification = new NSString(NSWind
 /** @method flags=const */
 public static final native long /*int*/ kCFAllocatorDefault();
 /** @method flags=const */
+public static final native long /*int*/ kCFBooleanFalse();
+/** @method flags=const */
+public static final native long /*int*/ kCFBooleanTrue();
+/** @method flags=const */
 public static final native long /*int*/ kCFRunLoopCommonModes();
 /** @method flags=const */
 public static final native long /*int*/ kCTFontAttributeName();
 /** @method flags=const */
 public static final native long /*int*/ kCTForegroundColorAttributeName();
+/** @method flags=const */
+public static final native long /*int*/ kCTForegroundColorFromContextAttributeName();
 /** @method flags=const */
 public static final native long /*int*/ kCTParagraphStyleAttributeName();
 /** @method flags=const */
@@ -3279,6 +3316,15 @@ public static final native void NSRectFillUsingOperation(NSRect aRect, long /*in
  */
 public static final native void NSWindowList(long /*int*/ size, long[] /*int[]*/ list);
 /**
+ * @param theArray cast=(CFArrayRef)
+ */
+public static final native long /*int*/ CFArrayGetCount(long /*int*/ theArray);
+/**
+ * @param theArray cast=(CFArrayRef)
+ * @param idx cast=(CFIndex)
+ */
+public static final native long /*int*/ CFArrayGetValueAtIndex(long /*int*/ theArray, long /*int*/ idx);
+/**
  * @param alloc cast=(CFAllocatorRef)
  * @param str cast=(CFStringRef)
  * @param attributes cast=(CFDictionaryRef)
@@ -3347,7 +3393,7 @@ public static final native void CFRunLoopStop(long /*int*/ rl);
 public static final native long /*int*/ CFStringCreateWithCharacters(long /*int*/ alloc, char[] chars, long /*int*/ numChars);
 /**
  * @param allocator cast=(CFAllocatorRef)
- * @param fsRef cast=(struct FSRef*)
+ * @param fsRef cast=(structFSRef*)
  */
 public static final native long /*int*/ CFURLCreateFromFSRef(long /*int*/ allocator, byte[] fsRef);
 /**
@@ -3637,6 +3683,11 @@ public static final native void CGPathCloseSubpath(long /*int*/ path);
 public static final native long /*int*/ CGPathCreateCopy(long /*int*/ path);
 public static final native long /*int*/ CGPathCreateMutable();
 /**
+ * @param rect flags=struct
+ * @param transform cast=(CGAffineTransform*)
+ */
+public static final native long /*int*/ CGPathCreateWithRect(CGRect rect, long /*int*/ transform);
+/**
  * @param path cast=(CGMutablePathRef)
  * @param m cast=(CGAffineTransform*)
  * @param x cast=(CGFloat)
@@ -3679,6 +3730,46 @@ public static final native double /*float*/ CTFontGetDescent(long /*int*/ font);
  */
 public static final native double /*float*/ CTFontGetLeading(long /*int*/ font);
 /**
+ * @param frame cast=(CTFrameRef)
+ * @param context cast=(CGContextRef)
+ */
+public static final native void CTFrameDraw(long /*int*/ frame, long /*int*/ context);
+/**
+ * @param frame cast=(CTFrameRef)
+ */
+public static final native long /*int*/ CTFrameGetFrameAttributes(long /*int*/ frame);
+/**
+ * @param frame cast=(CTFrameRef)
+ * @param range flags=struct
+ * @param origins cast=(CGPoint*)
+ */
+public static final native void CTFrameGetLineOrigins(long /*int*/ frame, CFRange range, long /*int*/ origins);
+/**
+ * @param frame cast=(CTFrameRef)
+ */
+public static final native long /*int*/ CTFrameGetLines(long /*int*/ frame);
+/**
+ * @param frame cast=(CTFrameRef)
+ */
+public static final native long /*int*/ CTFrameGetPath(long /*int*/ frame);
+public static final native long /*int*/ CTFrameGetTypeID();
+/**
+ * @param framesetter cast=(CTFramesetterRef)
+ * @param stringRange flags=struct
+ * @param path cast=(CGPathRef)
+ * @param frameAttributes cast=(CFDictionaryRef)
+ */
+public static final native long /*int*/ CTFramesetterCreateFrame(long /*int*/ framesetter, CFRange stringRange, long /*int*/ path, long /*int*/ frameAttributes);
+/**
+ * @param string cast=(CFAttributedStringRef)
+ */
+public static final native long /*int*/ CTFramesetterCreateWithAttributedString(long /*int*/ string);
+public static final native long /*int*/ CTFramesetterGetTypeID();
+/**
+ * @param framesetter cast=(CTFramesetterRef)
+ */
+public static final native long /*int*/ CTFramesetterGetTypesetter(long /*int*/ framesetter);
+/**
  * @param string cast=(CFAttributedStringRef)
  */
 public static final native long /*int*/ CTLineCreateWithAttributedString(long /*int*/ string);
@@ -3687,6 +3778,21 @@ public static final native long /*int*/ CTLineCreateWithAttributedString(long /*
  * @param context cast=(CGContextRef)
  */
 public static final native void CTLineDraw(long /*int*/ line, long /*int*/ context);
+/**
+ * @param line cast=(CTLineRef)
+ */
+public static final native long /*int*/ CTLineGetGlyphRuns(long /*int*/ line);
+/**
+ * @param line cast=(CTLineRef)
+ * @param charIndex cast=(CFIndex)
+ * @param secondaryOffset cast=(CGFloat*)
+ */
+public static final native double /*float*/ CTLineGetOffsetForStringIndex(long /*int*/ line, long /*int*/ charIndex, long /*int*/ secondaryOffset);
+/**
+ * @param line cast=(CTLineRef)
+ * @param position flags=struct
+ */
+public static final native long /*int*/ CTLineGetStringIndexForPosition(long /*int*/ line, CGPoint position);
 /**
  * @param line cast=(CTLineRef)
  * @param ascent cast=(CGFloat*)
@@ -3699,6 +3805,24 @@ public static final native double CTLineGetTypographicBounds(long /*int*/ line, 
  * @param settingCount cast=(size_t)
  */
 public static final native long /*int*/ CTParagraphStyleCreate(long /*int*/ settings, long /*int*/ settingCount);
+/**
+ * @param run cast=(CTRunRef)
+ * @param context cast=(CGContextRef)
+ * @param range flags=struct
+ */
+public static final native void CTRunDraw(long /*int*/ run, long /*int*/ context, CFRange range);
+/**
+ * @param run cast=(CTRunRef)
+ */
+public static final native long /*int*/ CTRunGetAttributes(long /*int*/ run);
+/**
+ * @param run cast=(CTRunRef)
+ * @param range flags=struct
+ * @param ascent cast=(CGFloat*)
+ * @param descent cast=(CGFloat*)
+ * @param leading cast=(CGFloat*)
+ */
+public static final native double CTRunGetTypographicBounds(long /*int*/ run, CFRange range, double[] /*float[]*/ ascent, double[] /*float[]*/ descent, double[] /*float[]*/ leading);
 /**
  * @param typesetter cast=(CTTypesetterRef)
  * @param stringRange flags=struct

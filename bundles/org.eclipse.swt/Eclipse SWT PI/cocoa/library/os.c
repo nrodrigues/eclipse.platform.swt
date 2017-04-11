@@ -1027,6 +1027,30 @@ JNIEXPORT jintLong JNICALL OS_NATIVE(CALLBACK_1webView_1setFrame_1)
 }
 #endif
 
+#ifndef NO_CFArrayGetCount
+JNIEXPORT jintLong JNICALL OS_NATIVE(CFArrayGetCount)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CFArrayGetCount_FUNC);
+	rc = (jintLong)CFArrayGetCount((CFArrayRef)arg0);
+	OS_NATIVE_EXIT(env, that, CFArrayGetCount_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CFArrayGetValueAtIndex
+JNIEXPORT jintLong JNICALL OS_NATIVE(CFArrayGetValueAtIndex)
+	(JNIEnv *env, jclass that, jintLong arg0, jintLong arg1)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CFArrayGetValueAtIndex_FUNC);
+	rc = (jintLong)CFArrayGetValueAtIndex((CFArrayRef)arg0, (CFIndex)arg1);
+	OS_NATIVE_EXIT(env, that, CFArrayGetValueAtIndex_FUNC);
+	return rc;
+}
+#endif
+
 #ifndef NO_CFAttributedStringCreate
 JNIEXPORT jintLong JNICALL OS_NATIVE(CFAttributedStringCreate)
 	(JNIEnv *env, jclass that, jintLong arg0, jintLong arg1, jintLong arg2)
@@ -1982,6 +2006,22 @@ JNIEXPORT jintLong JNICALL OS_NATIVE(CGPathCreateMutable)
 }
 #endif
 
+#ifndef NO_CGPathCreateWithRect
+JNIEXPORT jintLong JNICALL OS_NATIVE(CGPathCreateWithRect)
+	(JNIEnv *env, jclass that, jobject arg0, jintLong arg1)
+{
+	CGRect _arg0, *lparg0=NULL;
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CGPathCreateWithRect_FUNC);
+	if (arg0) if ((lparg0 = getCGRectFields(env, arg0, &_arg0)) == NULL) goto fail;
+	rc = (jintLong)CGPathCreateWithRect(*lparg0, (CGAffineTransform*)arg1);
+fail:
+	if (arg0 && lparg0) setCGRectFields(env, arg0, lparg0);
+	OS_NATIVE_EXIT(env, that, CGPathCreateWithRect_FUNC);
+	return rc;
+}
+#endif
+
 #ifndef NO_CGPathElement_1sizeof
 JNIEXPORT jint JNICALL OS_NATIVE(CGPathElement_1sizeof)
 	(JNIEnv *env, jclass that)
@@ -2154,6 +2194,130 @@ JNIEXPORT jfloatDouble JNICALL OS_NATIVE(CTFontGetLeading)
 }
 #endif
 
+#ifndef NO_CTFrameDraw
+JNIEXPORT void JNICALL OS_NATIVE(CTFrameDraw)
+	(JNIEnv *env, jclass that, jintLong arg0, jintLong arg1)
+{
+	OS_NATIVE_ENTER(env, that, CTFrameDraw_FUNC);
+	CTFrameDraw((CTFrameRef)arg0, (CGContextRef)arg1);
+	OS_NATIVE_EXIT(env, that, CTFrameDraw_FUNC);
+}
+#endif
+
+#ifndef NO_CTFrameGetFrameAttributes
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFrameGetFrameAttributes)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFrameGetFrameAttributes_FUNC);
+	rc = (jintLong)CTFrameGetFrameAttributes((CTFrameRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTFrameGetFrameAttributes_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFrameGetLineOrigins
+JNIEXPORT void JNICALL OS_NATIVE(CTFrameGetLineOrigins)
+	(JNIEnv *env, jclass that, jintLong arg0, jobject arg1, jintLong arg2)
+{
+	CFRange _arg1, *lparg1=NULL;
+	OS_NATIVE_ENTER(env, that, CTFrameGetLineOrigins_FUNC);
+	if (arg1) if ((lparg1 = getCFRangeFields(env, arg1, &_arg1)) == NULL) goto fail;
+	CTFrameGetLineOrigins((CTFrameRef)arg0, *lparg1, (CGPoint*)arg2);
+fail:
+	if (arg1 && lparg1) setCFRangeFields(env, arg1, lparg1);
+	OS_NATIVE_EXIT(env, that, CTFrameGetLineOrigins_FUNC);
+}
+#endif
+
+#ifndef NO_CTFrameGetLines
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFrameGetLines)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFrameGetLines_FUNC);
+	rc = (jintLong)CTFrameGetLines((CTFrameRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTFrameGetLines_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFrameGetPath
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFrameGetPath)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFrameGetPath_FUNC);
+	rc = (jintLong)CTFrameGetPath((CTFrameRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTFrameGetPath_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFrameGetTypeID
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFrameGetTypeID)
+	(JNIEnv *env, jclass that)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFrameGetTypeID_FUNC);
+	rc = (jintLong)CTFrameGetTypeID();
+	OS_NATIVE_EXIT(env, that, CTFrameGetTypeID_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFramesetterCreateFrame
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFramesetterCreateFrame)
+	(JNIEnv *env, jclass that, jintLong arg0, jobject arg1, jintLong arg2, jintLong arg3)
+{
+	CFRange _arg1, *lparg1=NULL;
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFramesetterCreateFrame_FUNC);
+	if (arg1) if ((lparg1 = getCFRangeFields(env, arg1, &_arg1)) == NULL) goto fail;
+	rc = (jintLong)CTFramesetterCreateFrame((CTFramesetterRef)arg0, *lparg1, (CGPathRef)arg2, (CFDictionaryRef)arg3);
+fail:
+	if (arg1 && lparg1) setCFRangeFields(env, arg1, lparg1);
+	OS_NATIVE_EXIT(env, that, CTFramesetterCreateFrame_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFramesetterCreateWithAttributedString
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFramesetterCreateWithAttributedString)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFramesetterCreateWithAttributedString_FUNC);
+	rc = (jintLong)CTFramesetterCreateWithAttributedString((CFAttributedStringRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTFramesetterCreateWithAttributedString_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFramesetterGetTypeID
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFramesetterGetTypeID)
+	(JNIEnv *env, jclass that)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFramesetterGetTypeID_FUNC);
+	rc = (jintLong)CTFramesetterGetTypeID();
+	OS_NATIVE_EXIT(env, that, CTFramesetterGetTypeID_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTFramesetterGetTypesetter
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTFramesetterGetTypesetter)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTFramesetterGetTypesetter_FUNC);
+	rc = (jintLong)CTFramesetterGetTypesetter((CTFramesetterRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTFramesetterGetTypesetter_FUNC);
+	return rc;
+}
+#endif
+
 #ifndef NO_CTLineCreateWithAttributedString
 JNIEXPORT jintLong JNICALL OS_NATIVE(CTLineCreateWithAttributedString)
 	(JNIEnv *env, jclass that, jintLong arg0)
@@ -2173,6 +2337,46 @@ JNIEXPORT void JNICALL OS_NATIVE(CTLineDraw)
 	OS_NATIVE_ENTER(env, that, CTLineDraw_FUNC);
 	CTLineDraw((CTLineRef)arg0, (CGContextRef)arg1);
 	OS_NATIVE_EXIT(env, that, CTLineDraw_FUNC);
+}
+#endif
+
+#ifndef NO_CTLineGetGlyphRuns
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTLineGetGlyphRuns)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTLineGetGlyphRuns_FUNC);
+	rc = (jintLong)CTLineGetGlyphRuns((CTLineRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTLineGetGlyphRuns_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTLineGetOffsetForStringIndex
+JNIEXPORT jfloatDouble JNICALL OS_NATIVE(CTLineGetOffsetForStringIndex)
+	(JNIEnv *env, jclass that, jintLong arg0, jintLong arg1, jintLong arg2)
+{
+	jfloatDouble rc = 0;
+	OS_NATIVE_ENTER(env, that, CTLineGetOffsetForStringIndex_FUNC);
+	rc = (jfloatDouble)CTLineGetOffsetForStringIndex((CTLineRef)arg0, (CFIndex)arg1, (CGFloat*)arg2);
+	OS_NATIVE_EXIT(env, that, CTLineGetOffsetForStringIndex_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTLineGetStringIndexForPosition
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTLineGetStringIndexForPosition)
+	(JNIEnv *env, jclass that, jintLong arg0, jobject arg1)
+{
+	CGPoint _arg1, *lparg1=NULL;
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTLineGetStringIndexForPosition_FUNC);
+	if (arg1) if ((lparg1 = getCGPointFields(env, arg1, &_arg1)) == NULL) goto fail;
+	rc = (jintLong)CTLineGetStringIndexForPosition((CTLineRef)arg0, *lparg1);
+fail:
+	if (arg1 && lparg1) setCGPointFields(env, arg1, lparg1);
+	OS_NATIVE_EXIT(env, that, CTLineGetStringIndexForPosition_FUNC);
+	return rc;
 }
 #endif
 
@@ -2218,6 +2422,57 @@ JNIEXPORT jint JNICALL OS_NATIVE(CTParagraphStyleSetting_1sizeof)
 	OS_NATIVE_ENTER(env, that, CTParagraphStyleSetting_1sizeof_FUNC);
 	rc = (jint)CTParagraphStyleSetting_sizeof();
 	OS_NATIVE_EXIT(env, that, CTParagraphStyleSetting_1sizeof_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTRunDraw
+JNIEXPORT void JNICALL OS_NATIVE(CTRunDraw)
+	(JNIEnv *env, jclass that, jintLong arg0, jintLong arg1, jobject arg2)
+{
+	CFRange _arg2, *lparg2=NULL;
+	OS_NATIVE_ENTER(env, that, CTRunDraw_FUNC);
+	if (arg2) if ((lparg2 = getCFRangeFields(env, arg2, &_arg2)) == NULL) goto fail;
+	CTRunDraw((CTRunRef)arg0, (CGContextRef)arg1, *lparg2);
+fail:
+	if (arg2 && lparg2) setCFRangeFields(env, arg2, lparg2);
+	OS_NATIVE_EXIT(env, that, CTRunDraw_FUNC);
+}
+#endif
+
+#ifndef NO_CTRunGetAttributes
+JNIEXPORT jintLong JNICALL OS_NATIVE(CTRunGetAttributes)
+	(JNIEnv *env, jclass that, jintLong arg0)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, CTRunGetAttributes_FUNC);
+	rc = (jintLong)CTRunGetAttributes((CTRunRef)arg0);
+	OS_NATIVE_EXIT(env, that, CTRunGetAttributes_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_CTRunGetTypographicBounds
+JNIEXPORT jdouble JNICALL OS_NATIVE(CTRunGetTypographicBounds)
+	(JNIEnv *env, jclass that, jintLong arg0, jobject arg1, jfloatDoubleArray arg2, jfloatDoubleArray arg3, jfloatDoubleArray arg4)
+{
+	CFRange _arg1, *lparg1=NULL;
+	jfloatDouble *lparg2=NULL;
+	jfloatDouble *lparg3=NULL;
+	jfloatDouble *lparg4=NULL;
+	jdouble rc = 0;
+	OS_NATIVE_ENTER(env, that, CTRunGetTypographicBounds_FUNC);
+	if (arg1) if ((lparg1 = getCFRangeFields(env, arg1, &_arg1)) == NULL) goto fail;
+	if (arg2) if ((lparg2 = (*env)->GetFloatDoubleArrayElements(env, arg2, NULL)) == NULL) goto fail;
+	if (arg3) if ((lparg3 = (*env)->GetFloatDoubleArrayElements(env, arg3, NULL)) == NULL) goto fail;
+	if (arg4) if ((lparg4 = (*env)->GetFloatDoubleArrayElements(env, arg4, NULL)) == NULL) goto fail;
+	rc = (jdouble)CTRunGetTypographicBounds((CTRunRef)arg0, *lparg1, (CGFloat*)lparg2, (CGFloat*)lparg3, (CGFloat*)lparg4);
+fail:
+	if (arg4 && lparg4) (*env)->ReleaseFloatDoubleArrayElements(env, arg4, lparg4, 0);
+	if (arg3 && lparg3) (*env)->ReleaseFloatDoubleArrayElements(env, arg3, lparg3, 0);
+	if (arg2 && lparg2) (*env)->ReleaseFloatDoubleArrayElements(env, arg2, lparg2, 0);
+	if (arg1 && lparg1) setCFRangeFields(env, arg1, lparg1);
+	OS_NATIVE_EXIT(env, that, CTRunGetTypographicBounds_FUNC);
 	return rc;
 }
 #endif
@@ -6214,6 +6469,30 @@ JNIEXPORT jintLong JNICALL OS_NATIVE(kCFAllocatorDefault)
 }
 #endif
 
+#ifndef NO_kCFBooleanFalse
+JNIEXPORT jintLong JNICALL OS_NATIVE(kCFBooleanFalse)
+	(JNIEnv *env, jclass that)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, kCFBooleanFalse_FUNC);
+	rc = (jintLong)kCFBooleanFalse;
+	OS_NATIVE_EXIT(env, that, kCFBooleanFalse_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_kCFBooleanTrue
+JNIEXPORT jintLong JNICALL OS_NATIVE(kCFBooleanTrue)
+	(JNIEnv *env, jclass that)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, kCFBooleanTrue_FUNC);
+	rc = (jintLong)kCFBooleanTrue;
+	OS_NATIVE_EXIT(env, that, kCFBooleanTrue_FUNC);
+	return rc;
+}
+#endif
+
 #ifndef NO_kCFRunLoopCommonModes
 JNIEXPORT jintLong JNICALL OS_NATIVE(kCFRunLoopCommonModes)
 	(JNIEnv *env, jclass that)
@@ -6270,6 +6549,18 @@ JNIEXPORT jintLong JNICALL OS_NATIVE(kCTForegroundColorAttributeName)
 	OS_NATIVE_ENTER(env, that, kCTForegroundColorAttributeName_FUNC);
 	rc = (jintLong)kCTForegroundColorAttributeName;
 	OS_NATIVE_EXIT(env, that, kCTForegroundColorAttributeName_FUNC);
+	return rc;
+}
+#endif
+
+#ifndef NO_kCTForegroundColorFromContextAttributeName
+JNIEXPORT jintLong JNICALL OS_NATIVE(kCTForegroundColorFromContextAttributeName)
+	(JNIEnv *env, jclass that)
+{
+	jintLong rc = 0;
+	OS_NATIVE_ENTER(env, that, kCTForegroundColorFromContextAttributeName_FUNC);
+	rc = (jintLong)kCTForegroundColorFromContextAttributeName;
+	OS_NATIVE_EXIT(env, that, kCTForegroundColorFromContextAttributeName_FUNC);
 	return rc;
 }
 #endif

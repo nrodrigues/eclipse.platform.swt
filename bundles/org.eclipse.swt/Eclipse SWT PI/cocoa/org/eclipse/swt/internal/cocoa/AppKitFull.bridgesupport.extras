@@ -4974,6 +4974,11 @@
 	<enum name="NSTouchPhaseMoved" swt_gen="true"></enum>
 	<enum name="NSTouchPhaseStationary" swt_gen="true"></enum>
 	<enum name="NSTouchPhaseTouching" swt_gen="true"></enum>
+	<enum name="NSUnderlinePatternDash" swt_gen="true"></enum>
+	<enum name="NSUnderlinePatternDashDot" swt_gen="true"></enum>
+	<enum name="NSUnderlinePatternDashDotDot" swt_gen="true"></enum>
+	<enum name="NSUnderlinePatternDot" swt_gen="true"></enum>
+	<enum name="NSUnderlinePatternSolid" swt_gen="true"></enum>
 	<enum name="NSUnderlineStyleDouble" swt_gen="true"></enum>
 	<enum name="NSUnderlineStyleNone" swt_gen="true"></enum>
 	<enum name="NSUnderlineStyleSingle" swt_gen="true"></enum>
